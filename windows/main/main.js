@@ -1,7 +1,13 @@
+/**
+ * Renderer process
+ * "Main" view
+ */
 var remote = require('remote'),
-Menu = remote.require('menu');
+    Menu = remote.require('menu'),
+    ipc = require('ipc'),
+    lokijs = require('lokijs');
 
-var menu = Menu.buildFromTemplate([
+var appMenu = Menu.buildFromTemplate([
     {
         label: 'Electron',
         submenu: [{
@@ -15,9 +21,11 @@ var menu = Menu.buildFromTemplate([
         label: 'File',
         submenu: [
             {
-                label: 'Add Task',
+                label: 'Create Password',
+                accelerator: 'CmdOrCtrl+N',
                 click: function() {
-
+                    // alert('Create new password');
+                    ipc.send('toggle-insert-view');
                 }
             },
             {
@@ -32,4 +40,4 @@ var menu = Menu.buildFromTemplate([
     }
 ]);
 
-Menu.setApplicationMenu(menu);
+Menu.setApplicationMenu(appMenu);
