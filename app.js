@@ -9,9 +9,5 @@ app.on('ready', function() {
         height: 600
     });
 
-    mainWindow.loadUrl('file://' + __dirname + '/index.html');
-
-    mainWindow.on('closed', function() {
-        mainWindow = null;
-    });
+    mainWindow.loadUrl('file://' + __dirname + '/windows/main/main.html');
 });
