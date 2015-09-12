@@ -8,14 +8,7 @@ var app = require('app'),
 var mainWindow = null,
     insertWindow = null;
 
-app.on('ready', function() {
-    mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600
-    });
-
-    mainWindow.loadUrl('file://' + __dirname + '/windows/main/main.html');
-
+function createInsertWindow() {
     insertWindow = new BrowserWindow({
         width: 400,
         height: 400,
@@ -24,7 +17,25 @@ app.on('ready', function() {
 
     insertWindow.loadUrl('file://' + __dirname + '/windows/insert/insert.html');
 
+    insertWindow.on('closed',function() {
+        insertWindow = null;
+    });
+}
+
+app.on('ready', function() {
+    mainWindow = new BrowserWindow({
+        width: 800,
+        height: 600
+    });
+
+    mainWindow.loadUrl('file://' + __dirname + '/windows/main/main.html');
+    mainWindow.openDevTools();
+
     ipc.on('toggle-insert-view', function() {
-        return (insertWindow.isVisible()) ? insertWindow.hide() : insertWindow.show();
+        if(!insertWindow) {
+            createInsertWindow();
+        }
+
+        return (!insertWindow.isClosed() && insertWindow.isVisible()) ? insertWindow.hide() : insertWindow.show();
     });
 });
