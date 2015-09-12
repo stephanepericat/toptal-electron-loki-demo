@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Add Password</title>
+<head>
+    <meta charset="utf-8">
+    <title>Add Password</title>
 
-        <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link href="../../bower_components/material-design-lite/material.min.css" rel="stylesheet" />
-        <link href="../../common/app.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="../../bower_components/material-design-lite/material.min.css" rel="stylesheet" />
+    <link href="../../common/app.css" rel="stylesheet" />
 
-        <script src="../../bower_components/material-design-lite/material.min.js"></script>
-    </head>
-    <body>
+    <script src="../../bower_components/material-design-lite/material.min.js"></script>
+</head>
+<body>
 
-        <section class="container">
-            <header>
-                <h1>Add Password</h1>
-            </header>
+    <section class="container">
+        <header>
+            <h1>Add Password</h1>
+        </header>
 
-            <div>
-                <button id="close-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">close</button>
-            </div>
-        </section>
+        <div class="insert">
+            <form name="insert-form">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="description" required />
+                    <label class="mdl-textfield__label" for="sample3">Description...</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="username" />
+                    <label class="mdl-textfield__label" for="sample3">Username...</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="password" id="password" required />
+                    <label class="mdl-textfield__label" for="password">Password...</label>
+                </div>
+                <div class="">
+                    <button id="generate-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">generate</button>
+                    <button id="close-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">cancel</button>
+                    <button id="save-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">save</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-        <script>require('./insert.controller.js');</script>
-        <script src="./insert.view.js"></script>
-    </body>
+    <script>require('./insert.controller.js');</script>
+    <script src="./insert.view.js"></script>
+</body>
 </html>

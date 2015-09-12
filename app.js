@@ -10,8 +10,8 @@ var mainWindow = null,
 
 function createInsertWindow() {
     insertWindow = new BrowserWindow({
-        width: 500,
-        height: 350,
+        width: 640,
+        height: 480,
         show: false
     });
 
