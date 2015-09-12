@@ -10,8 +10,8 @@ var mainWindow = null,
 
 function createInsertWindow() {
     insertWindow = new BrowserWindow({
-        width: 400,
-        height: 400,
+        width: 500,
+        height: 350,
         show: false
     });
 
@@ -24,8 +24,8 @@ function createInsertWindow() {
 
 app.on('ready', function() {
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600
+        width: 1024,
+        height: 768
     });
 
     mainWindow.loadUrl('file://' + __dirname + '/windows/main/main.html');

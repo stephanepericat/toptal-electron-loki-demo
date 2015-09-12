@@ -3,12 +3,25 @@
     <head>
         <meta charset="utf-8">
         <title>Add Password</title>
+
+        <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link href="../../bower_components/material-design-lite/material.min.css" rel="stylesheet" />
+        <link href="../../common/app.css" rel="stylesheet" />
+
+        <script src="../../bower_components/material-design-lite/material.min.js"></script>
     </head>
     <body>
 
-        <h1>Add Password</h1>
+        <section class="container">
+            <header>
+                <h1>Add Password</h1>
+            </header>
 
-        <input type="button" value="close" name="close" />
+            <div>
+                <button id="close-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">close</button>
+            </div>
+        </section>
 
         <script>require('./insert.controller.js');</script>
         <script src="./insert.view.js"></script>

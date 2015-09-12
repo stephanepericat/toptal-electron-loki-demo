@@ -4,18 +4,24 @@
         <meta charset="utf-8">
         <title>Password Keychain</title>
 
-        <link href="../../node_modules/todomvc-common/base.css" rel="stylesheet" />
-        <link href="../../node_modules/todomvc-app-css/index.css" rel="stylesheet" />
+        <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link href="../../bower_components/material-design-lite/material.min.css" rel="stylesheet" />
+        <link href="../../common/app.css" rel="stylesheet" />
+
+        <script src="../../bower_components/material-design-lite/material.min.js"></script>
     </head>
     <body>
 
-        <section id="todoapp">
+        <section class="container">
             <header id="header">
                 <h1>Password Keychain</h1>
             </header>
 
             <div>
-                <button id="insert-button">Add Password</button>
+                <button id="insert-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+                    <i class="material-icons">add</i>
+                </button>
             </div>
         </section>
 
