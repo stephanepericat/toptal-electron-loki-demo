@@ -1,11 +1,22 @@
-var ipc = require('ipc'),
-    remote = require('remote');
+// var ipc = require('ipc'),
+//     remote = require('remote');
 // insert button
-var insertBtn = document.getElementById('insert-button');
-insertBtn.addEventListener('click', function(e) {
-    e.preventDefault();
+// var insertBtn = document.getElementById('insert-button');
+// insertBtn.addEventListener('click', function(e) {
+//     e.preventDefault();
+//
+//     // console.log(remote.getCurrentWindow());
+//
+//     ipc.send('toggle-insert-view');
+// });
+angular
+    .module('MainView', ['Utils'])
+    .controller('MainCtrl', [function() {
+        var vm = this;
+    }]);
 
-    // console.log(remote.getCurrentWindow());
-
-    ipc.send('toggle-insert-view');
-});
+angular
+    .element(document)
+    .ready(function() {
+        angular.bootstrap(document.body, ['MainView']);
+    });

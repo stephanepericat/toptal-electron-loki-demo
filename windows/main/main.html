@@ -10,6 +10,8 @@
     <link href="../../common/app.css" rel="stylesheet" />
 
     <script src="../../bower_components/material-design-lite/material.min.js"></script>
+    <script src="../../bower_components/angular/angular.min.js"></script>
+
 </head>
 <body>
 
@@ -18,14 +20,15 @@
             <h1>Password Keychain</h1>
         </header>
 
-        <div>
-            <button id="insert-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+        <div ng-controller="MainCtrl as vm">
+            <button toggle-insert-view class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
                 <i class="material-icons">add</i>
             </button>
         </div>
     </section>
 
     <script>require('./main.controller.js');</script>
+    <script src="../../common/utils.js"></script>
     <script src="./main.view.js"></script>
 </body>
 </html>
