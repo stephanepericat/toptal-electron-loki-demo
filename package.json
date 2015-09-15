@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/stephanepericat/toptal-electron-loki-demo#readme",
   "dependencies": {
-    "lokijs": "^1.3.9"
+    "lokijs": "^1.3.9",
+    "uuid": "^2.0.1"
   },
   "devDependencies": {
     "gulp": "^3.9.0",

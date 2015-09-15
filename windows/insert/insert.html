@@ -21,23 +21,23 @@
         </header>
 
         <div class="insert" ng-controller="InsertCtrl as vm">
-            <form name="insert-form" no-validate>
+            <form name="insertForm" no-validate>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="description" required />
+                    <input class="mdl-textfield__input" type="text" id="description" ng-model="vm.formData.description" required />
                     <label class="mdl-textfield__label" for="sample3">Description...</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="username" />
+                    <input class="mdl-textfield__input" type="text" id="username" ng-model="vm.formData.username" />
                     <label class="mdl-textfield__label" for="sample3">Username...</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="password" id="password" required />
+                    <input class="mdl-textfield__input" type="password" id="password" ng-model="vm.formData.password" required />
                     <label class="mdl-textfield__label" for="password">Password...</label>
                 </div>
                 <div class="">
-                    <button id="generate-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">generate</button>
+                    <button generate-password class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">generate</button>
                     <button toggle-insert-view class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">cancel</button>
-                    <button id="save-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">save</button>
+                    <button save-password class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-disabled="insertForm.$invalid">save</button>
                 </div>
             </form>
         </div>
@@ -46,5 +46,12 @@
     <script>require('./insert.controller.js');</script>
     <script src="../../common/utils.js"></script>
     <script src="./insert.view.js"></script>
+    <script>
+        angular
+            .element(document)
+            .ready(function() {
+                angular.bootstrap(document.body, ['InsertView']);
+            });
+    </script>
 </body>
 </html>

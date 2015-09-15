@@ -30,5 +30,12 @@
     <script>require('./main.controller.js');</script>
     <script src="../../common/utils.js"></script>
     <script src="./main.view.js"></script>
+    <script>
+        angular
+            .element(document)
+            .ready(function() {
+                angular.bootstrap(document.body, ['MainView']);
+            });
+    </script>
 </body>
 </html>
