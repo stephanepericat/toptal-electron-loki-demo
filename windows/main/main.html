@@ -24,6 +24,11 @@
             <button toggle-insert-view class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
                 <i class="material-icons">add</i>
             </button>
+
+            <div class="keychain">
+                <!-- list goes here -->
+                <p ng-repeat="item in vm.keychain">{{item}}</p>
+            </div>
         </div>
     </section>
 

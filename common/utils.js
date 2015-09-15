@@ -12,26 +12,47 @@ angular
             }
         };
     })
-    .factory('Storage', function() {
-        var db = new loki(path.resolve(__dirname, '../..', 'app.db')),
-            collection = db.getCollection('keychain');
+    .factory('Storage', ['$q', function($q) {
+        function loadDb() {
+            var d = $q.defer(),
+                db = new loki(path.resolve(__dirname, '../..', 'app.db')),
+                collection = null;
 
-        if(!collection) collection = db.addCollection('keychain');
+            db.loadDatabase({}, function(err) {
+                if(err) {
+                    // create the file if it doesnt exist
+                    db.saveDatabase();
+                }
+
+                if(!db.getCollection('keychain')) {
+                    // create the db and save it if it doesn't exist
+                    db.addCollection('keychain');
+                    db.saveDatabase();
+                }
+
+                collection = db.getCollection('keychain');
+
+                d.resolve({
+                    get: function() {
+                        return collection.data;
+                    },
+                    set: function(data) {
+                        collection.insert(data);
+                        db.saveDatabase();
+                        return true;
+                    }
+                });
+            });
+
+            return d.promise;
+        }
 
         return {
-            insert: function(data, cb) {
-                try{
-                    collection.insert(data);
-                    db.saveDatabase(cb);
-                } catch(e) {
-                    cb.call(this, e);
-                }
-            },
-            getList: function(cb) {
-                db.loadDatabase({}, cb);
+            load: function() {
+                return loadDb();
             }
         };
-    })
+    }])
     .directive('toggleInsertView', [function() {
         return function(scope, el) {
             el.bind('click', function(e) {
@@ -41,7 +62,7 @@ angular
         };
     }])
     .directive('generatePassword', ['Generator', function(Generator) {
-        return function(scope, el, attrs, ctrl) {
+        return function(scope, el) {
             el.bind('click', function(e) {
                 e.preventDefault();
                 if(!scope.vm.formData) scope.vm.formData = {};
@@ -50,20 +71,22 @@ angular
             });
         };
     }])
-    .directive('savePassword', ['Storage', function(db) {
+    .directive('savePassword', ['Storage', function(Storage) {
         return function(scope, el) {
             el.bind('click', function(e) {
                 e.preventDefault();
-                db.insert(scope.vm.formData, function(err) {
-                    if(err) {
-                        scope.vm.formData.error = err;
-                        scope.$apply();
-                    } else {
+
+                Storage
+                    .load()
+                    .then(function(collection) {
+                        // save doc
+                        collection.set(scope.vm.formData);
+                        // refresh list in main view
+                        ipc.send('update-main-view');
+                        // reste form & close insert window
                         scope.vm.formData = {};
-                        scope.$apply();
                         ipc.send('toggle-insert-view');
-                    }
-                });
+                    });
             });
         };
     }]);
