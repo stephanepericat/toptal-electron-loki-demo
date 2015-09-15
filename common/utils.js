@@ -20,12 +20,7 @@ angular
 
             db.loadDatabase({}, function(err) {
                 if(err) {
-                    // create the file if it doesnt exist
-                    db.saveDatabase();
-                }
-
-                if(!db.getCollection('keychain')) {
-                    // create the db and save it if it doesn't exist
+                    // create the db file and add the collection, if it doesn't exist
                     db.addCollection('keychain');
                     db.saveDatabase();
                 }
@@ -65,6 +60,7 @@ angular
         return function(scope, el) {
             el.bind('click', function(e) {
                 e.preventDefault();
+
                 if(!scope.vm.formData) scope.vm.formData = {};
                 scope.vm.formData.password = Generator.create();
                 scope.$apply();
