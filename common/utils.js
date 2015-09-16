@@ -1,7 +1,8 @@
 var ipc = require('ipc'),
-uuid = require('uuid'),
-loki = require('lokijs'),
-path = require('path');
+    clipboard = require('clipboard'),
+    uuid = require('uuid'),
+    loki = require('lokijs'),
+    path = require('path');
 
 angular
     .module('Utils', [])
@@ -90,7 +91,9 @@ angular
         return function(scope, el, attrs) {
             el.bind('click', function(e) {
                 e.preventDefault();
-                // console.log(attrs.copyPassword);
+                var text = (scope.vm.keychain[attrs.copyPassword]) ? scope.vm.keychain[attrs.copyPassword].password : '';
+                // atom's clipboard module
+                clipboard.writeText(text);
             });
         };
     }])
