@@ -1,7 +1,7 @@
 var ipc = require('ipc'),
-    uuid = require('uuid'),
-    loki = require('lokijs'),
-    path = require('path');
+uuid = require('uuid'),
+loki = require('lokijs'),
+path = require('path');
 
 angular
     .module('Utils', [])
@@ -14,9 +14,9 @@ angular
     })
     .factory('Storage', ['$q', function($q) {
         function loadDb() {
-            var d = $q.defer(),
-                db = new loki(path.resolve(__dirname, '../..', 'app.db')),
-                collection = null;
+            var db = new loki(path.resolve(__dirname, '../..', 'app.db')),
+            d = $q.defer(),
+            collection = null;
 
             db.loadDatabase({}, function(err) {
                 if(err) {
@@ -29,7 +29,7 @@ angular
 
                 d.resolve({
                     get: function() {
-                        return collection.data;
+                        return (collection && collection.data) ? collection.data : [];
                     },
                     set: function(data) {
                         collection.insert(data);
@@ -73,16 +73,29 @@ angular
                 e.preventDefault();
 
                 Storage
-                    .load()
-                    .then(function(collection) {
-                        // save doc
-                        collection.set(scope.vm.formData);
-                        // refresh list in main view
-                        ipc.send('update-main-view');
-                        // reste form & close insert window
-                        scope.vm.formData = {};
-                        ipc.send('toggle-insert-view');
-                    });
+                .load()
+                .then(function(collection) {
+                    // save doc
+                    collection.set(scope.vm.formData);
+                    // refresh list in main view
+                    ipc.send('update-main-view');
+                    // reste form & close insert window
+                    scope.vm.formData = {};
+                    ipc.send('toggle-insert-view');
+                });
             });
+        };
+    }])
+    .directive('copyPassword', [function() {
+        return function(scope, el, attrs) {
+            el.bind('click', function(e) {
+                e.preventDefault();
+                // console.log(attrs.copyPassword);
+            });
+        };
+    }])
+    .directive('removePassword', [function() {
+        return function(scope, el, attrs) {
+            console.log(attrs.removePassword);
         };
     }]);

@@ -20,14 +20,36 @@
             <h1>Password Keychain</h1>
         </header>
 
-        <div ng-controller="MainCtrl as vm">
+        <div ng-controller="MainCtrl as vm" class="ng-cloak">
             <button toggle-insert-view class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
                 <i class="material-icons">add</i>
             </button>
 
             <div class="keychain">
                 <!-- list goes here -->
-                <p ng-repeat="item in vm.keychain">{{item}}</p>
+                <!-- <p ng-repeat="item in vm.keychain">{{item}}</p> -->
+                <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="!vm.keychain"></div>
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" ng-if="vm.keychain">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Description</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in vm.keychain track by $index" class="item--{{$index}}">
+                            <td class="mdl-data-table__cell--non-numeric">{{item.description}}</td>
+                            <td>{{item.username || 'n/a'}}</td>
+                            <td>&bull;&bull;&bull;&bull;&bull;&bull;</td>
+                            <td>
+                                <a href="#" copy-password="{{$index}}">copy</a>
+                                <a href="#" remove-password="{{item}}">remove</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -36,11 +58,11 @@
     <script src="../../common/utils.js"></script>
     <script src="./main.view.js"></script>
     <script>
-        angular
-            .element(document)
-            .ready(function() {
-                angular.bootstrap(document.body, ['MainView']);
-            });
+    angular
+    .element(document)
+    .ready(function() {
+        angular.bootstrap(document.body, ['MainView']);
+    });
     </script>
 </body>
 </html>
