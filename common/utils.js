@@ -36,6 +36,11 @@ angular
                         collection.insert(data);
                         db.saveDatabase();
                         return true;
+                    },
+                    remove: function(doc) {
+                        collection.remove(doc);
+                        db.saveDatabase();
+                        return true;
                     }
                 });
             });
@@ -74,16 +79,16 @@ angular
                 e.preventDefault();
 
                 Storage
-                .load()
-                .then(function(collection) {
-                    // save doc
-                    collection.set(scope.vm.formData);
-                    // refresh list in main view
-                    ipc.send('update-main-view');
-                    // reste form & close insert window
-                    scope.vm.formData = {};
-                    ipc.send('toggle-insert-view');
-                });
+                    .load()
+                    .then(function(collection) {
+                        // save doc
+                        collection.set(scope.vm.formData);
+                        // refresh list in main view
+                        ipc.send('update-main-view');
+                        // reste form & close insert window
+                        scope.vm.formData = {};
+                        ipc.send('toggle-insert-view');
+                    });
             });
         };
     }])
@@ -93,12 +98,26 @@ angular
                 e.preventDefault();
                 var text = (scope.vm.keychain[attrs.copyPassword]) ? scope.vm.keychain[attrs.copyPassword].password : '';
                 // atom's clipboard module
+                clipboard.clear();
                 clipboard.writeText(text);
             });
         };
     }])
-    .directive('removePassword', [function() {
+    .directive('removePassword', ['Storage', function(Storage) {
         return function(scope, el, attrs) {
-            console.log(attrs.removePassword);
+            // console.log(attrs.removePassword);
+            el.bind('click', function(e) {
+                e.preventDefault();
+                var doc = JSON.parse(attrs.removePassword);
+
+                Storage
+                    .load()
+                    .then(function(collection) {
+                        // remove doc
+                        collection.remove(doc);
+                        // refresh list in main view
+                        ipc.send('update-main-view');
+                    });
+            });
         };
     }]);
