@@ -92,6 +92,9 @@ angular
                     this.getCollection().remove(doc);
                     this.db.saveDatabase();
 
+                    // we need to inform the insert view that the db content has changed
+                    ipc.send('reload-insert-view');
+
                     d.resolve(true);
                 } else {
                     d.reject(new Error('DB NOT READY'));
@@ -129,7 +132,7 @@ angular
             el.bind('click', function(e) {
                 e.preventDefault();
 
-                if(Storage.isLoaded() && scope.vm.formData) {
+                if(scope.vm.formData) {
                     Storage
                         .addDoc(scope.vm.formData)
                         .then(function() {

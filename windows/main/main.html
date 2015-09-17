@@ -26,8 +26,6 @@
             </button>
 
             <div class="keychain">
-                <!-- list goes here -->
-                <!-- <p ng-repeat="item in vm.keychain">{{item}}</p> -->
                 <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="!vm.keychain"></div>
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" ng-if="vm.keychain">
                     <thead>
@@ -58,11 +56,11 @@
     <script src="../../common/utils.js"></script>
     <script src="./main.view.js"></script>
     <script>
-    angular
-    .element(document)
-    .ready(function() {
-        angular.bootstrap(document.body, ['MainView']);
-    });
+        angular
+            .element(document)
+            .ready(function() {
+                angular.bootstrap(document.body, ['MainView']);
+            });
     </script>
 </body>
 </html>
