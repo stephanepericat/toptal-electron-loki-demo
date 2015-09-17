@@ -5,16 +5,19 @@ angular
     .module('MainView', ['Utils'])
     .controller('MainCtrl', ['Storage', '$scope', function(Storage, scope) {
         var vm = this;
-        vm.keychain = [];
+        vm.keychain = null;
 
-        function updateList() {
-            Storage
-                .load()
-                .then(function(data) {
-                    vm.keychain = data.get();
+        Storage
+            .init()
+            .then(function(db) {
+                vm.keychain = db.getDocs();
+
+                remoteIpc.on('update-main-view', function() {
+                    Storage
+                        .reload()
+                        .then(function() {
+                            vm.keychain = db.getDocs();
+                        });
                 });
-        }
-
-        updateList();
-        remoteIpc.on('update-main-view', updateList);
+            });
     }]);
