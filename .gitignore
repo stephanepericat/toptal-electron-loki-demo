@@ -27,4 +27,8 @@ build/Release
 node_modules
 bower_components
 
-app.db
+cache
+dist/v0.31.2
+
+src/app.db
+**/*.DS_Store
