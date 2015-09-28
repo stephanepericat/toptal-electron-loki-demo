@@ -2,7 +2,7 @@
 
 Earlier this year, Github released Atom-Shell, the core of its famous open-source editor [Atom](https://atom.io), and renamed it for the occasion **Electron**.
 
-Electron, unlike other competitors in the category of Node.js-based desktop applications, brings its own twist to this already well-established market by combining the power of io.js together with the Chromium engine, to bring you the best of both server and client-side JavaScript.
+Electron, unlike other competitors in the category of Node.js-based desktop applications, brings its own twist to this already well-established market by combining the power of [io.js](https://iojs.org/) together with the [Chromium Engine](http://www.chromium.org/Home), to bring you the best of both server and client-side JavaScript.
 
 Imagine a world where you could build performant, data-driven, cross-platform desktop applications; powered by not only the ever-growing repository of NPM modules, but also the entire Bower registry to fulfill all your client-side needs.
 
