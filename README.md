@@ -10,7 +10,9 @@ A password keychain desktop app built with Electron & Loki.js.
 npm install -g electron-prebuilt
 ```
 
- - Run `npm install` in both the root folder and the src/ folder to install npm dependencies
+## Install
+
+Run `npm install` at the root of this repository. It will also install the dependencies in the `src/` folder, and start the app automatically.
 
 ## Run the app
 

@@ -40,7 +40,9 @@
                         <tr ng-repeat="item in vm.keychain track by $index" class="item--{{$index}}">
                             <td class="mdl-data-table__cell--non-numeric">{{item.description}}</td>
                             <td>{{item.username || 'n/a'}}</td>
-                            <td>&bull;&bull;&bull;&bull;&bull;&bull;</td>
+                            <td>
+                                <span ng-repeat="n in [1,2,3,4,5,6]">&bull;</span>
+                            </td>
                             <td>
                                 <a href="#" copy-password="{{$index}}">copy</a>
                                 <a href="#" remove-password="{{item}}">remove</a>
