@@ -10,18 +10,31 @@ A password keychain desktop app built with Electron & Loki.js.
 npm install -g electron-prebuilt
 ```
 
+Also install Gulp & Bower, if you do not already have them:
+
+```shell
+npm install -g gulp bower
+```
+
 ## Install
 
-Run `npm install` at the root of this repository. It will also install the dependencies in the `src/` folder, and start the app automatically.
+```shell
+cd /path/to/toptal-electron-loki-demo/
+npm i
+cd src/
+npm i && bower i
+```
 
 ## Run the app
 
 ```shell
+cd /path/to/toptal-electron-loki-demo/
 npm start
 ```
 
 ## Build the distribution files
 
 ```shell
+cd /path/to/toptal-electron-loki-demo/
 npm run dist
 ```

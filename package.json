@@ -1,11 +1,10 @@
 {
   "name": "toptal-electron-loki-demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Desktop App Built with Electron & Loki.js",
   "main": "src/app.js",
   "scripts": {
     "start": "electron ./src",
-    "postinstall": "sh postinstall.sh",
     "dist": "gulp electron"
   },
   "repository": {

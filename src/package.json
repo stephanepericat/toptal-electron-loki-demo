@@ -1,6 +1,6 @@
 {
   "name": "toptal-password-keychain",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "bundle": "com.toptal.blog",
   "description": "A Password Keychain Built with Electron & Loki.js",
   "main": "app.js",
